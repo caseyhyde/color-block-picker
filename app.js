@@ -29,19 +29,36 @@ $(document).ready(function() {
     return color;
   }
 
+  function randomNumber(min, max){
+      return Math.floor(Math.random() * (1 + max - min) + min);
+  }
+
 
   $("form").on("submit", function(event) {
     event.preventDefault();
 
+    var winningBox = randomNumber(0, (parseInt($("#howManyBlocks").val())-1));
+    console.log(winningBox);
+
     for(var i = 0; i < $("#howManyBlocks").val(); i++) {
       div = new DivCreator();
       divStorage.push(div);
-      $("#game").append('<div id="box' + i + '"></div>');
+      $("#game").append('<div id="box' + i + '"></div>').fadeIn(1500);
       $("#box" + i).css('background-color', div.color);
+      $("#box" + i).data("boxNumber", i);
 
     }
 
-    console.log(divStorage);
+    $("#game").append('<button class="restart">RESTART</button>');
+    $("form").remove();
+
+    $("#game").on("click", "div", function() {
+      console.log($(this).data("boxNumber"));
+      if ($(this).data("boxNumber") == winningBox) {
+        $("#game").css('display', 'none');
+        $("body").append('<h2 id="nailedit">NAILED IT!</h2><br><button class="restart">RESTART</button>')
+      }
+    });
 
   });
 
