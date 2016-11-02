@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <title></title>
+  </head>
+  <header>
+    <h1>jQuery Color Block Picker!</h1>
+  </header>
+  <body>
+    <form>
+      <label for="howManyBlocks">How many blocks?</label>
+      <input type="range" id="howManyBlocks" name="howManyBlocks" min="0" max="25" step="1" oninput="numBlocks.value = howManyBlocks.value"/>
+      <output id="numBlocks">25</output>
+
+      <input type="submit" id="start" value="START"/>
+    </form>
+    <div id="game">
+    </div>
+  </body>
+</html>
