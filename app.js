@@ -7,7 +7,7 @@ What this does:
 4) assign each object a random color property.
 5) store all of those objects in an array.
 6) append that many divs to the dom
-7) on click, transition that div to a different color and display "correct message"
+7) on correct click, transition that div to a different color and display "correct message"
 *****************************/
 
 
