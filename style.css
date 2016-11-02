@@ -1,3 +1,7 @@
+body {
+  width: 100%;
+}
+
 h1 {
   text-align: center;
 }
@@ -8,16 +12,24 @@ form {
 
 #game {
   display: none;
-  width: 100%;
+  margin: 20px;
+  width: 90%;
   height: 100%;
 }
 
 #game div {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
+  float: none;
+  margin: 5px 10% 5px 10%;
 }
 
 button {
   display: inline-block;
+}
+
+#winMessage{
+  display: none;
+  text-align: center;
 }

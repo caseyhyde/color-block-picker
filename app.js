@@ -16,10 +16,17 @@ $(document).ready(function() {
   var div = {};
   var divStorage = [];
 
+  $("form").on("submit", function(event) {
+    event.preventDefault();
+    drawGame();
+    $("#game").on("click", "div", checkBox);
+  });
+/*********************************
+FUNCTIONS
+**********************************/
   function DivCreator() {
     this.color = randomColor();
   }
-
   function randomColor() {
     var letters = "0123456789ABCDEF";
     var color = '#';
@@ -28,44 +35,32 @@ $(document).ready(function() {
     }
     return color;
   }
-
   function randomNumber(min, max){
       return Math.floor(Math.random() * (1 + max - min) + min);
   }
-
-
-  $("form").on("submit", function(event) {
-    event.preventDefault();
-
-    var winningBox = randomNumber(0, (parseInt($("#howManyBlocks").val())-1));
-    console.log(winningBox);
-
+  function drawGame() {
+    $("#game").children().remove();
+    div = {};
+    divStorage = [];
+    winningBox = randomNumber(0, (parseInt($("#howManyBlocks").val())-1));
+    console.log("Winning box #: " + winningBox);
     for(var i = 0; i < $("#howManyBlocks").val(); i++) {
       div = new DivCreator();
       divStorage.push(div);
       $("#game").append('<div id="box' + i + '"></div>').fadeIn(1500);
       $("#box" + i).css('background-color', div.color);
       $("#box" + i).data("boxNumber", i);
-
+      $("#winMessage").fadeOut();
     }
-
-    $("#game").append('<button class="restart">RESTART</button>');
-    $("form").remove();
-
-    $("#game").on("click", "div", function() {
-      console.log($(this).data("boxNumber"));
-      if ($(this).data("boxNumber") == winningBox) {
+  }
+  function checkBox() {
+    console.log("Clicked box: " + $(this).data("boxNumber"));
+    if ($(this).data("boxNumber") == winningBox) {
+      $(this).css('background-color', randomColor());
+      setTimeout(function () {
         $("#game").css('display', 'none');
-        $("body").append('<h2 id="nailedit">NAILED IT!</h2><br><button class="restart">RESTART</button>')
-      }
-    });
-
-  });
-
-
-
-
-
-
-
+        $("#winMessage").fadeIn();
+      }, 2000);
+    }
+  }
 });

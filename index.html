@@ -13,12 +13,13 @@
   <body>
     <form>
       <label for="howManyBlocks">How many blocks?</label>
-      <input type="range" id="howManyBlocks" name="howManyBlocks" min="2" max="50" step="1" oninput="numBlocks.value = howManyBlocks.value"/>
-      <output id="numBlocks">25</output><br>
+      <input type="range" id="howManyBlocks" name="howManyBlocks" min="2" max="100" step="1" oninput="numBlocks.value = howManyBlocks.value"/>
+      <output id="numBlocks">49</output><br>
 
       <input type="submit" id="start" value="START"/>
     </form>
     <div id="game">
     </div>
+    <div id="winMessage">NAILED IT!</div>
   </body>
 </html>
