@@ -15,9 +15,11 @@ What this does:
 $(document).ready(function() {
   var div = {};
   var divStorage = [];
+  var numBlocks = 0;
 
   $("form").on("submit", function(event) {
     event.preventDefault();
+    numBlocks = $("#howManyBlocks").val();
     drawGame();
     $("#game").on("click", "div", checkBox);
   });
@@ -44,14 +46,14 @@ FUNCTIONS
     divStorage = [];
     winningBox = randomNumber(0, (parseInt($("#howManyBlocks").val())-1));
     console.log("Winning box #: " + winningBox);
-    for(var i = 0; i < $("#howManyBlocks").val(); i++) {
+    for(var i = 0; i < numBlocks; i++) {
       div = new DivCreator();
       divStorage.push(div);
       $("#game").append('<div id="box' + i + '"></div>').fadeIn(1500);
       $("#box" + i).css('background-color', div.color);
       $("#box" + i).data("boxNumber", i);
-      $("#winMessage").fadeOut();
     }
+    $("#winMessage").fadeOut();
     $("#whichColor").children().replaceWith("<h1>Select the color " + divStorage[winningBox].color + "</h1>");
   }
   function checkBox() {
@@ -61,7 +63,9 @@ FUNCTIONS
       setTimeout(function () {
         $("#game").css('display', 'none');
         $("#winMessage").fadeIn();
+        setTimeout(drawGame(), 2000);
       }, 2000);
+
     }
   }
 });
