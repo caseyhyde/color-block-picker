@@ -65,7 +65,6 @@ FUNCTIONS
         $("#winMessage").fadeIn();
         setTimeout(drawGame(), 2000);
       }, 2000);
-
     }
   }
 });
