@@ -52,6 +52,7 @@ FUNCTIONS
       $("#box" + i).data("boxNumber", i);
       $("#winMessage").fadeOut();
     }
+    $("#whichColor").children().replaceWith("<h1>Select the color " + divStorage[winningBox].color + "</h1>");
   }
   function checkBox() {
     console.log("Clicked box: " + $(this).data("boxNumber"));
